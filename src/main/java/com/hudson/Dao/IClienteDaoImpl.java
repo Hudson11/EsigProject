@@ -11,7 +11,7 @@ import com.hudson.repository.ClienteRepository;
 @Service
 public  class IClienteDaoImpl implements IClienteDao{
 	
-	@Autowired(required = true)
+	@Autowired
 	private ClienteRepository clienteRepository;
 
 	@Override
