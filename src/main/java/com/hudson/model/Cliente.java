@@ -12,15 +12,15 @@ public class Cliente implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
-	private String nome;
+	private String name;
 	
 	private boolean status;
 
-	public Cliente(String nome, boolean aprovado) {
+	public Cliente(String name, boolean aprovado) {
 		super();
-		this.nome = nome;
+		this.name = name;
 		this.status = aprovado;
 	}
 	
@@ -31,32 +31,37 @@ public class Cliente implements Serializable{
 		super();
 	}
 	
-	/*
-	 *  Getters And Setters
-	 * */
-	public String getNome() {
-		return nome;
+	public Long getId() {
+		return id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public boolean isAprovado() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setAprovado(boolean aprovado) {
-		this.status = aprovado;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (status ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + (status ? 1231 : 1237);
 		return result;
 	}
 
@@ -69,25 +74,24 @@ public class Cliente implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		if (status != other.status)
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!name.equals(other.name))
+			return false;
+		if (status != other.status)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", aprovado=" + status + "]";
+		return "Cliente [id=" + id + ", name=" + name + ", status=" + status + "]";
 	}
-			
 	
 }
