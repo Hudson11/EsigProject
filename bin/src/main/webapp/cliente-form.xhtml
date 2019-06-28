@@ -57,7 +57,7 @@
 
 								<p:inputText id="name" placeholder="What needs to be done ?"
 									value="#{clienteController.cliente.name}"
-									style="margin-left:30px;width:300px" />
+									style="margin-left:30px;width:300px" required="true" />
 
 								<h:commandButton value="Adicionar"
 									action="#{clienteController.save}" update="form"
@@ -88,7 +88,15 @@
 
 
 							<p:column>
-								#{item.name}
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{item.name}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="modelInput" value="#{tarefa.name}"
+											style="width:100%" />
+									</f:facet>
+								</p:cellEditor>
 							</p:column>
 
 							<p:column style="width:60px">
