@@ -46,7 +46,7 @@
 				<li class="list-group-item"><nav
 						class="navbar navbar-light bg-light">TODO JSF_SPRING </nav></li>
 				<li class="list-group-item"><h:form id="form">
-					<p:growl id="growl" showDetail="true" sticky="true"/>
+						<p:growl id="growl" showDetail="true" sticky="true" />
 						<p:panel style="width:500px">
 							<h:panelGrid columns="3" style="heigth:100px">
 
@@ -88,11 +88,20 @@
 
 
 							<p:column>
-					#{item.name}
-				</p:column>
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{item.name}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="modelInput" value="#{tarefa.name}"
+											style="width:100%" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
 
 							<p:column style="width:60px">
-								<h:commandLink update="form">
+								<h:commandLink update="form"
+									action="#{clienteController.updateItem(item)}">
 									<img src="resources/img/editar.png"
 										onmouseover="this.src='resources/img/editar2.png'"
 										onmouseout="this.src='resources/img/editar.png'" />

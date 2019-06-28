@@ -149,7 +149,7 @@ public class ClienteController implements Serializable{
 		loadData();
 	}
 	
-	// Tested
+	// OK
 	public void setStatusTrueAll() {
 		
 		loadData();
@@ -159,6 +159,12 @@ public class ClienteController implements Serializable{
 				c.setStatus(true);
 			this.clienteDao.save(c);
 		}
+	}
+	
+	// Tested
+	public String updateItem(Cliente object) {
+		this.cliente = object;
+		return "/cliente-form.xhtml?faces-redirect=true";
 	}
 	
 	/*
