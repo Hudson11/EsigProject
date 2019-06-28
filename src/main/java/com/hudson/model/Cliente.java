@@ -10,6 +10,11 @@ import javax.persistence.Id;
 @Entity
 public class Cliente implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5958989907083608494L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -18,8 +23,9 @@ public class Cliente implements Serializable{
 	
 	private boolean status;
 
-	public Cliente(String name, boolean aprovado) {
+	public Cliente(Long id, String name, boolean aprovado) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.status = aprovado;
 	}
@@ -47,13 +53,14 @@ public class Cliente implements Serializable{
 		this.name = name;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
 
 	@Override
 	public int hashCode() {

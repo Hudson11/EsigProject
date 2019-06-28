@@ -3,7 +3,7 @@
 	version="3.1">
 	<session-config>
 		<welcome-file-list>
-        	<welcome-file>cliente-form.xhtml</welcome-file>
+        	<welcome-file>form.xhtml</welcome-file>
     	</welcome-file-list>
 	</session-config>
 	<servlet>

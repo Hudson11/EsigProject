@@ -10,10 +10,10 @@ import com.hudson.model.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 	
-	@Query(value = "SELECT FROM * cliente c WHERE c.status = false", nativeQuery = true)
+	@Query(value = "SELECT * FROM  cliente c WHERE c.status = false", nativeQuery = true)
 	List <Cliente> findByClienteStatus();
 	
-	@Query(value = "SELECT FROM * cliente c WHERE c.status = true", nativeQuery = true)
+	@Query(value = "SELECT * FROM  cliente c WHERE c.status = true", nativeQuery = true)
 	List <Cliente> findByClienteStatusAprovado();
 	
 }

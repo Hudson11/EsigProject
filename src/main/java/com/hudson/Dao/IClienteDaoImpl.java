@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hudson.model.Cliente;
 import com.hudson.repository.ClienteRepository;
+import com.sun.mail.imap.protocol.ID;
 
 @Service
 public  class IClienteDaoImpl implements IClienteDao{
@@ -55,5 +56,12 @@ public  class IClienteDaoImpl implements IClienteDao{
 		// TODO Auto-generated method stub
 		return this.clienteRepository.findByClienteStatusAprovado();
 	}
+
+	@Override
+	public void deleteAll(List<Cliente> list) {
+		// TODO Auto-generated method stub
+		this.clienteRepository.deleteAll(list);
+	}
+
 	
 }

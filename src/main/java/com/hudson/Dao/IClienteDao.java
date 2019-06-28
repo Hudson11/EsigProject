@@ -8,7 +8,8 @@ import com.hudson.model.Cliente;
 
 public interface IClienteDao extends IGenericDao<Cliente, Integer>{
 	
-	List <Cliente> findByClienteStatus();
+	List<Cliente> findByClienteStatus();
 	
-	List <Cliente> findByClienteStatusAprovado();
+	List<Cliente> findByClienteStatusAprovado();
+
 }

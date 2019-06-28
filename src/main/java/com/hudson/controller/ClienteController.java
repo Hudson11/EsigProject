@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.hudson.Dao.IClienteDao;
+import com.hudson.Dao.IClienteDaoImpl;
 import com.hudson.model.Cliente;
 
 @Scope(value = "session")
@@ -25,21 +26,25 @@ import com.hudson.model.Cliente;
 @Join(path = "/", to="/cliente-form.jsf")
 public class ClienteController implements Serializable{
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2258161782656916704L;
+
 	@Autowired
-	IClienteDao clienteDao;
-	
+	IClienteDaoImpl clienteDao;
 	private Cliente cliente;
-	
 	private List<Cliente> listCliente;
-	
 	private Integer qtdClienteAtivos;
-	
 	private Integer qtdClienteAprovados;
 	
 	public ClienteController() {
 		
 		this.cliente = new Cliente();
 		this.listCliente = new ArrayList<>();
+		
+		//this.getQtdClienteAtivos();
 		
 	}
 	
@@ -54,11 +59,11 @@ public class ClienteController implements Serializable{
 		listCliente = this.clienteDao.findAll();
 	}
 	
+	// OK
 	public String save() {
 		
 		if (cliente.getName() == null || cliente.getName().trim() == "") {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Campo Vazio", null));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unsuccefull", "Message: unsuccessful: field is empty"));
 			return null;
 		}
 		
@@ -78,22 +83,106 @@ public class ClienteController implements Serializable{
 		
 		return "/cliente-form.xhtml?faces-redirect=true";
 	}
-
+	
+	// OK
+	public String remove(Long id) {
+		
+		clienteDao.deleteById(id);
+		loadData();
+		
+		return "/cliente-form.xhtml?faces-redirect=true";
+	}
+	
+	// OK
+	public void mudarStatus(Cliente t) {
+		if (t.getStatus()) {
+			t.setStatus(false);
+		} else {
+			t.setStatus(true);
+		}
+		this.clienteDao.save(t);
+	}
+	
+	// OK
+	public List<Cliente> listCompleted() {
+		
+		List<Cliente> listCliCompleted = new ArrayList<>();
+		
+		loadData();
+		
+		for(Cliente c: this.getListCliente()) {
+			if (c.getStatus() == true) 
+				listCliCompleted.add(c);
+		}
+		
+		this.listCliente = listCliCompleted;
+		
+		return listCliCompleted;
+	}
+	
+	// OK
+	public List<Cliente> listActives() {
+		
+		List<Cliente> listCliCompleted = new ArrayList<>();
+		
+		loadData();
+		
+		for(Cliente c: this.getListCliente()) {
+			if (c.getStatus() == false) 
+				listCliCompleted.add(c);
+		}
+		
+		this.listCliente = listCliCompleted;
+		
+		return listCliCompleted;
+	}
+	
+	// OK
+	public void deleteCompleted() {
+		
+		List<Cliente> actives = new ArrayList<>();
+		
+		actives = this.listCompleted();
+		
+		this.clienteDao.deleteAll(actives);
+		
+		loadData();
+	}
+	
+	// Tested
+	public void setStatusTrueAll() {
+		
+		loadData();
+		
+		for(Cliente c: this.getListCliente()) {
+			if (c.getStatus() == false)
+				c.setStatus(true);
+			this.clienteDao.save(c);
+		}
+	}
+	
+	/*
+	 *  GETTERS AND SETTERS
+	 * */
 	public Cliente getCliente() {
 		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public List<Cliente> getListCliente() {
 		return listCliente;
 	}
 
-	public void setListCliente(List<Cliente> listCliente) {
-		this.listCliente = listCliente;
+	public IClienteDaoImpl getClienteDao() {
+		return clienteDao;
 	}
-	
+
+	public Integer getQtdClienteAtivos() {
+		return qtdClienteAtivos = clienteDao.findByClienteStatus().size();
+	}
+
+	public Integer getQtdClienteAprovados() {
+		return qtdClienteAprovados = clienteDao.findByClienteStatusAprovado().size();
+	}
+
 	
 }

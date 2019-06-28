@@ -43,7 +43,7 @@ public class service {
 	@DeleteMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public void delete(@PathVariable("id") long id) {
+	public void delete(@PathVariable("id") Long id) {
 		clienteDao.deleteById(id);
 	}
 	
