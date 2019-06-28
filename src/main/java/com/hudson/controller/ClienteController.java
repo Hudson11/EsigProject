@@ -1,5 +1,7 @@
 package com.hudson.controller;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -21,7 +23,7 @@ import com.hudson.model.Cliente;
 @Component(value = "clienteController")
 @ELBeanName(value = "clienteController")
 @Join(path = "/", to="/cliente-form.jsf")
-public class ClienteController {
+public class ClienteController implements Serializable{
 	
 	@Autowired
 	IClienteDao clienteDao;
@@ -36,8 +38,8 @@ public class ClienteController {
 	
 	public ClienteController() {
 		
-		cliente = new Cliente();
-		loadData();
+		this.cliente = new Cliente();
+		this.listCliente = new ArrayList<>();
 		
 	}
 	
@@ -49,7 +51,7 @@ public class ClienteController {
 	@RequestAction
 	@IgnorePostback
 	public void loadData() {
-		listCliente = clienteDao.findAll();
+		listCliente = this.clienteDao.findAll();
 	}
 	
 	public String save() {
@@ -75,6 +77,22 @@ public class ClienteController {
 				"Cliente Cadastrado", null));
 		
 		return "/cliente-form.xhtml?faces-redirect=true";
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Cliente> getListCliente() {
+		return listCliente;
+	}
+
+	public void setListCliente(List<Cliente> listCliente) {
+		this.listCliente = listCliente;
 	}
 	
 	
