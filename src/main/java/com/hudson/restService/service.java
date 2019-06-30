@@ -15,36 +15,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hudson.Dao.IClienteDao;
-import com.hudson.model.Cliente;
+import com.hudson.Dao.IitemDao;
+import com.hudson.model.Item;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/item")
 @CrossOrigin(origins = "*")
 public class service {
 	
 	@Autowired
-	private IClienteDao clienteDao;
+	private IitemDao itemDao;
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List <Cliente> findAll(){
-		return clienteDao.findAll();
+	public List <Item> findAll(){
+		return itemDao.findAll();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public void createOrUpdate(@RequestBody Cliente c) {
-		clienteDao.save(c);
+	public void createOrUpdate(@RequestBody Item c) {
+		itemDao.save(c);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public void delete(@PathVariable("id") Long id) {
-		clienteDao.deleteById(id);
+		itemDao.deleteById(id);
 	}
 	
 }

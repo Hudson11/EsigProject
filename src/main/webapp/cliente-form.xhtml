@@ -14,7 +14,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-		<title>Cliente</title>
+		<title>To Do List</title>
 
 		<link rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -51,16 +51,16 @@
 							<h:panelGrid columns="3" style="heigth:100px">
 
 								<h:commandLink update="form" style="margin-right:-5px"
-									action="#{clienteController.setStatusTrueAll}">
+									action="#{itemController.setStatusTrueAll}">
 									<img src="resources/img/angle-arrow-down.png" />
 								</h:commandLink>
 
 								<p:inputText id="name" placeholder="What needs to be done ?"
-									value="#{clienteController.cliente.name}"
+									value="#{itemController.item.name}"
 									style="margin-left:30px;width:300px" />
 
 								<h:commandButton value="Adicionar"
-									action="#{clienteController.save}" update="form"
+									action="#{itemController.save}" update="form"
 									style="margin-left:10px" />
 
 							</h:panelGrid>
@@ -69,11 +69,11 @@
 						<p:growl id="msgs" showDetail="true" />
 
 						<p:dataTable id="tarefas" var="item"
-							rendered="#{not empty clienteController.listCliente}"
-							value="#{clienteController.listCliente}" style="width:500px">
+							rendered="#{not empty itemController.listItem}"
+							value="#{itemController.listItem}" style="width:500px">
 
 							<p:column style="width:60px">
-								<h:commandLink action="#{clienteController.mudarStatus(item)}"
+								<h:commandLink action="#{itemController.mudarStatus(item)}"
 									update="form">
 									<h:panelGroup rendered="#{item.status eq false}">
 										<img src="resources/img/verified_transparent.png"
@@ -93,7 +93,7 @@
 
 							<p:column style="width:60px">
 								<h:commandLink update="form"
-									action="#{clienteController.updateItem(item)}">
+									action="#{itemController.updateItem(item)}">
 									<img src="resources/img/editar.png"
 										onmouseover="this.src='resources/img/editar2.png'"
 										onmouseout="this.src='resources/img/editar.png'" />
@@ -102,7 +102,7 @@
 
 
 							<p:column style="width:60px">
-								<h:commandLink action="#{clienteController.remove(item.id)}"
+								<h:commandLink action="#{itemController.remove(item.id)}"
 									update="form">
 									<img src="resources/img/delete.png"
 										onmouseover="this.src='resources/img/delete2.png'"
@@ -117,19 +117,19 @@
 							<f:facet name="left">
 								<div style="font-size: 10px">
 									<h:outputLabel id="text"
-										value="#{clienteController.qtdClienteAtivos} Clientes na Lista" />
+										value="#{itemController.qtdItemAtivos} Clientes na Lista" />
 									<p:commandButton value="All" style="margin-left: 5px"
-										action="#{clienteController.loadData}" />
+										action="#{itemController.loadData}" />
 									<p:commandButton value="Actives" style="margin-left: 5px"
-										action="#{clienteController.listActives}" />
+										action="#{itemController.listActives}" />
 									<p:commandButton value="Completed" style="margin-left: 5px"
-										action="#{clienteController.listCompleted}" />
+										action="#{itemController.listCompleted}" />
 								</div>
 							</f:facet>
 							<f:facet name="right">
 								<div style="font-size: 10px">
 									<p:commandButton value="Delete Completed"
-										action="#{clienteController.deleteCompleted}" />
+										action="#{itemController.deleteCompleted}" />
 								</div>
 							</f:facet>
 

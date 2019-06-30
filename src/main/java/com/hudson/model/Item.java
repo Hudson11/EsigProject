@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente implements Serializable{
+public class Item implements Serializable{
 	
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class Cliente implements Serializable{
 	
 	private boolean status;
 
-	public Cliente(Long id, String name, boolean aprovado) {
+	public Item(Long id, String name, boolean aprovado) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -33,7 +33,7 @@ public class Cliente implements Serializable{
 	/*
 	 *  Constructor Empty
 	 * */
-	public Cliente() {
+	public Item() {
 		super();
 	}
 	
@@ -80,7 +80,7 @@ public class Cliente implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Item other = (Item) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

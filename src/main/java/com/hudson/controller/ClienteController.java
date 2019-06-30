@@ -16,13 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.hudson.Dao.IClienteDao;
-import com.hudson.Dao.IClienteDaoImpl;
-import com.hudson.model.Cliente;
+import com.hudson.Dao.IitemDao;
+import com.hudson.Dao.IitemDaoImpl;
+import com.hudson.model.Item;
 
 @Scope(value = "session")
-@Component(value = "clienteController")
-@ELBeanName(value = "clienteController")
+@Component(value = "itemController")
+@ELBeanName(value = "itemController")
 @Join(path = "/", to="/cliente-form.jsf")
 public class ClienteController implements Serializable{
 	
@@ -33,16 +33,16 @@ public class ClienteController implements Serializable{
 	private static final long serialVersionUID = -2258161782656916704L;
 
 	@Autowired
-	IClienteDaoImpl clienteDao;
-	private Cliente cliente;
-	private List<Cliente> listCliente;
-	private Integer qtdClienteAtivos;
-	private Integer qtdClienteAprovados;
+	IitemDaoImpl itemDao;
+	private Item item;
+	private List<Item> listItem;
+	private Integer qtdItemAtivos;
+	private Integer qtdItemAprovados;
 	
 	public ClienteController() {
 		
-		this.cliente = new Cliente();
-		this.listCliente = new ArrayList<>();
+		this.item = new Item();
+		this.listItem = new ArrayList<>();
 		
 		//this.getQtdClienteAtivos();
 		
@@ -56,22 +56,22 @@ public class ClienteController implements Serializable{
 	@RequestAction
 	@IgnorePostback
 	public void loadData() {
-		listCliente = this.clienteDao.findAll();
+		listItem = this.itemDao.findAll();
 	}
 	
 	// OK
 	public String save() {
 		
-		if (cliente.getName() == null || cliente.getName().trim() == "") {
+		if (item.getName() == null || item.getName().trim() == "") {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unsuccefull", "Message: unsuccessful: field is empty"));
 			return null;
 		}
 		
-		cliente.setStatus(false);
+		item.setStatus(false);
 		
 		try {
-			clienteDao.save(cliente);
-			cliente = new Cliente();
+			itemDao.save(item);
+			item = new Item();
 			loadData();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
@@ -87,52 +87,52 @@ public class ClienteController implements Serializable{
 	// OK
 	public String remove(Long id) {
 		
-		clienteDao.deleteById(id);
+		itemDao.deleteById(id);
 		loadData();
 		
 		return "/cliente-form.xhtml?faces-redirect=true";
 	}
 	
 	// OK
-	public void mudarStatus(Cliente t) {
+	public void mudarStatus(Item t) {
 		if (t.getStatus()) {
 			t.setStatus(false);
 		} else {
 			t.setStatus(true);
 		}
-		this.clienteDao.save(t);
+		this.itemDao.save(t);
 	}
 	
 	// OK
-	public List<Cliente> listCompleted() {
+	public List<Item> listCompleted() {
 		
-		List<Cliente> listCliCompleted = new ArrayList<>();
+		List<Item> listCliCompleted = new ArrayList<>();
 		
 		loadData();
 		
-		for(Cliente c: this.getListCliente()) {
+		for(Item c: this.getListItem()) {
 			if (c.getStatus() == true) 
 				listCliCompleted.add(c);
 		}
 		
-		this.listCliente = listCliCompleted;
+		this.listItem = listCliCompleted;
 		
 		return listCliCompleted;
 	}
 	
 	// OK
-	public List<Cliente> listActives() {
+	public List<Item> listActives() {
 		
-		List<Cliente> listCliCompleted = new ArrayList<>();
+		List<Item> listCliCompleted = new ArrayList<>();
 		
 		loadData();
 		
-		for(Cliente c: this.getListCliente()) {
+		for(Item c: this.getListItem()) {
 			if (c.getStatus() == false) 
 				listCliCompleted.add(c);
 		}
 		
-		this.listCliente = listCliCompleted;
+		this.listItem = listCliCompleted;
 		
 		return listCliCompleted;
 	}
@@ -140,11 +140,11 @@ public class ClienteController implements Serializable{
 	// OK
 	public void deleteCompleted() {
 		
-		List<Cliente> actives = new ArrayList<>();
+		List<Item> actives = new ArrayList<>();
 		
 		actives = this.listCompleted();
 		
-		this.clienteDao.deleteAll(actives);
+		this.itemDao.deleteAll(actives);
 		
 		loadData();
 	}
@@ -154,40 +154,40 @@ public class ClienteController implements Serializable{
 		
 		loadData();
 		
-		for(Cliente c: this.getListCliente()) {
+		for(Item c: this.getListItem()) {
 			if (c.getStatus() == false)
 				c.setStatus(true);
-			this.clienteDao.save(c);
+			this.itemDao.save(c);
 		}
 	}
 	
 	// Tested
-	public String updateItem(Cliente object) {
-		this.cliente = object;
+	public String updateItem(Item object) {
+		this.item = object;
 		return "/cliente-form.xhtml?faces-redirect=true";
 	}
 	
 	/*
 	 *  GETTERS AND SETTERS
 	 * */
-	public Cliente getCliente() {
-		return cliente;
+	public Item getItem() {
+		return item;
 	}
 
-	public List<Cliente> getListCliente() {
-		return listCliente;
+	public List<Item> getListItem() {
+		return listItem;
 	}
 
-	public IClienteDaoImpl getClienteDao() {
-		return clienteDao;
+	public IitemDaoImpl getItemDao() {
+		return itemDao;
 	}
 
-	public Integer getQtdClienteAtivos() {
-		return qtdClienteAtivos = clienteDao.findByClienteStatus().size();
+	public Integer getQtdItemAtivos() {
+		return qtdItemAtivos = itemDao.findByItemStatus().size();
 	}
 
-	public Integer getQtdClienteAprovados() {
-		return qtdClienteAprovados = clienteDao.findByClienteStatusAprovado().size();
+	public Integer getQtdItemAprovados() {
+		return qtdItemAprovados = itemDao.findByItemStatusAprovado().size();
 	}
 
 	
