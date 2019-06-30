@@ -106,35 +106,21 @@ public class ClienteController implements Serializable{
 	// OK
 	public List<Item> listCompleted() {
 		
-		List<Item> listCliCompleted = new ArrayList<>();
-		
 		loadData();
 		
-		for(Item c: this.getListItem()) {
-			if (c.getStatus() == true) 
-				listCliCompleted.add(c);
-		}
+		this.listItem = itemDao.findByItemStatusAprovado();
 		
-		this.listItem = listCliCompleted;
-		
-		return listCliCompleted;
+		return this.listItem;
 	}
 	
 	// OK
 	public List<Item> listActives() {
 		
-		List<Item> listCliCompleted = new ArrayList<>();
-		
 		loadData();
 		
-		for(Item c: this.getListItem()) {
-			if (c.getStatus() == false) 
-				listCliCompleted.add(c);
-		}
+		this.listItem = itemDao.findByItemStatus();
 		
-		this.listItem = listCliCompleted;
-		
-		return listCliCompleted;
+		return this.listItem;
 	}
 	
 	// OK
