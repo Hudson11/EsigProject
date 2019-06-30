@@ -1,4 +1,4 @@
-# EsigProject
+# To Do List Project
 Projeto com CRUD desenvolvido com JavaServer Faces(Jsf), Spring Boot, Spring Data JPA,MySql, JPA, PrimeFaces, 
 Bootstrap e publicado no Heroku com o PostgreSql.
 
