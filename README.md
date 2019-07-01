@@ -14,3 +14,4 @@ as credenciais e crie um banco chamado "esig".
 
 Após iniciada a aplicaçã, basta acessar localhost:3005/.
 O projeto oferece uma ApiRest para acesso aos recursos: basta acessar os recursos GET e POST acrescentando "/item", e para DELETE "/item/{id}".
+* linkedin.com/in/hudson-borba-757b52171/
