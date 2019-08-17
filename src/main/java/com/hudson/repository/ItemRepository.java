@@ -16,4 +16,7 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
 	@Query(value = "SELECT * FROM  item c WHERE c.status = true", nativeQuery = true)
 	List <Item> findByItemStatusAprovado();
 	
+	@Query(value = "SELECT * FROM item c WHERE c.name = ?", nativeQuery = true)
+	Item findByName(String name);
+	
 }

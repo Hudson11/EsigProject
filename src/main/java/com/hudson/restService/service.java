@@ -33,6 +33,20 @@ public class service {
 		return itemDao.findAll();
 	}
 	
+//	@GetMapping
+//	@ResponseStatus(HttpStatus.OK)
+//	@ResponseBody
+//	public List<Item> findAllByActives(){
+//		return itemDao.findByItemStatusAprovado();
+//	}
+//	
+//	@GetMapping
+//	@ResponseStatus(HttpStatus.OK)
+//	@ResponseBody
+//	public List<Item> findAllByCompleted(){
+//		return itemDao.findByItemStatus();
+//	}
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody

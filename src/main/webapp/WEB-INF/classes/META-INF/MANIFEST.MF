@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: project
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: isac3
+Built-By: hudson
 Implementation-Vendor-Id: com.hudson
-Build-Jdk: 1.8.0_201
+Build-Jdk: 1.8.0_222
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/project
 Created-By: Maven Integration for Eclipse

@@ -2,6 +2,7 @@ package com.hudson.Dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 public interface IGenericDao<T, ID extends Serializable> {
 	
@@ -13,7 +14,7 @@ public interface IGenericDao<T, ID extends Serializable> {
 	
 	void deleteAll(List<T> list);
 	
-	T findById(Long id);
+	Optional<T> findById(Long id);
 	
 	List<T> findAll();
 	
