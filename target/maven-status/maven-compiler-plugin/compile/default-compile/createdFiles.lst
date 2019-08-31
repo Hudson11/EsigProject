@@ -1,0 +1,14 @@
+com/hudson/controller/ItemController.class
+com/hudson/controller/GrowlController.class
+com/hudson/repository/IClienteRepository.class
+com/hudson/Dao/IClienteImpl.class
+com/hudson/controller/ClienteController.class
+com/hudson/Dao/IClienteDao.class
+com/hudson/Dao/IGenericDao.class
+com/hudson/model/Item.class
+com/hudson/Dao/IitemDao.class
+com/hudson/repository/ItemRepository.class
+com/hudson/ProjectApplication.class
+com/hudson/Dao/IitemDaoImpl.class
+com/hudson/restService/service.class
+com/hudson/model/Cliente.class

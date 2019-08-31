@@ -7,39 +7,97 @@
 
 <f:view contentType="text/html">
 
+	<h:head>
+
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<title>To Do List</title>
+
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous" />
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+	</h:head>
+
 	<h:body>
-
-
 		<h:form>
-			<tr>
-				<td>
-					<p:inputText value="#{clienteController.cliente.nome}" title="Nome" 
-						required="true" message="Campo Nome Obrigatório"/>
-				</td>
-				<td>
-					<p:inputText value="#{clienteController.cliente.email}" title="Email" 
-						required="true" message="Campo Email Obrigatório"/>
-				</td>
-				<td>
-					<p:inputText value="#{clienteController.cliente.cpf}" title="Cpf" 
-						required="true" message="Campo Cpf Obrigatório"/>
-				</td>
-				<td>
-					<p:inputText value="#{clienteController.cliente.rg}" title="Rg" 
-						required="true" message="Campo Rg Obrigatório"/>
-				</td>
-				<td>
-					<p:inputText value="#{clienteController.cliente.senha}" title="Senha" 
-						required="true" message="Campo Senha Obrigatório"/>
-				</td>
-				<td>
-					<p:inputText value="#{clienteController.cliente.repeteSenha}" title="Repete Senha" 
-						required="true" message="Campo Repete Senha Obrigatório"/>
-				</td>
-				<td>
-					<p:commandButton value="Cadastrar" actionListener="#{clienteController.cadastraCliente}"/>
-				</td>
-			</tr>
+
+			<p:growl id="growl" showDetail="true" sticky="true" />
+
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+
+						<table style="width: 100%">
+							<tr>
+								<td><p:outputLabel value="Nome Completo"
+										indicateRequired="true" /> <br /> <p:inputText
+										value="#{clienteController.cliente.nome}" title="Nome"
+										required="true" message="Campo Nome Obrigatório" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="Email" indicateRequired="true" />
+									<br /> <p:inputText value="#{clienteController.cliente.email}"
+										title="Email" required="true"
+										message="Campo Email Obrigatório" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="Cpf" indicateRequired="true" />
+									<br /> <p:inputText value="#{clienteController.cliente.cpf}"
+										title="Cpf" required="true" message="Campo Cpf Obrigatório" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="Rg" indicateRequired="true" /> <br />
+									<p:inputText value="#{clienteController.cliente.rg}" title="Rg"
+										required="true" message="Campo Rg Obrigatório" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="Senha" indicateRequired="true" />
+									<br /> <p:inputText value="#{clienteController.cliente.senha}"
+										title="Senha" required="true"
+										message="Campo Senha Obrigatório" /></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel value="Repete Senha"
+										indicateRequired="true" /> <br /> <p:inputText
+										value="#{clienteController.cliente.repeteSenha}"
+										title="Repete Senha" required="true"
+										message="Campo Repete Senha Obrigatório" /></td>
+							</tr>
+							<tr>
+								<td><p:commandButton value="Cadastrar"
+										action="#{clienteController.cadastraCliente}"
+										style="margin-top:20px" update="@form" /></td>
+							</tr>
+
+						</table>
+
+					</div>
+					<div class="col-sm-6">
+
+						<img
+							src="https://pngimage.net/wp-content/uploads/2018/06/icone-cadastro-usuario-png.png" />
+
+					</div>
+				</div>
+			</div>
+
+
+
 		</h:form>
 
 	</h:body>

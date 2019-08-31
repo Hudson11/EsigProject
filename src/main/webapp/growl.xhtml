@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+
+	<h:head>
+
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<title>To Do List</title>
+
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous" />
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+		<!-- Compiled and minified JavaScript -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<!-- materialize icons -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet" />
+
+
+	</h:head>
+
+	<h:body>
+
+		<div class="divPai"
+			style="position: absolute; align-items: center; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; height: 100%; background-position: center; background-image: url(https://eusoudev.com.br/wp-content/uploads/2018/01/react.jpg)">
+
+			<div
+				style="position: absolute; width: 100%; height: 75%; border-radius: 8px;">
+
+				<!-- CONTEÚDO AQUI DENTRO -->
+
+				<h:form id="form">
+
+					<div class="container">
+						<div class="row">
+							<div class="col-sm">
+								<img
+									src="http://react-materialize.github.io/react-materialize/static/media/react-materialize-logo.824c6ea3.svg"
+									width="100%" height="100%" />
+							</div>
+							<div class="col-sm-8">
+								<table>
+									<tr>
+										<td><label style="font-size: 40px;"> Entre ou
+												Cadastre-se </label></td>
+										<td></td>
+									</tr>
+								</table>
+								<table style="margin-top: 20px">
+									<tr>
+										<td>
+											<div class="input-field">
+												<p:inputText type="text" id="email" style="color: white" />
+												<p:outputLabel value="E-Mail"/>
+											</div>
+										</td>
+										<td>
+											<div class="input-field">
+												<p:inputText type="password" id="senha" style="color: white" />
+												<p:outputLabel value="Senha"/>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<a href="https://github.com/Hudson11"
+									class="waves-effect waves-light btn"
+									style="width: 100%; border-radius: 8px;">Entrar</a> <br /> <br />
+								<a href="#modal1"
+									class="waves-effect waves-light btn modal-trigger"
+									style="width: 100%; border-radius: 8px; background-color: #1D71A7">Cadastrar-se</a>
+								<div id="modal1" class="modal" style="background-color:;">
+									<div class="modal-content">
+										<h4>Formulário de Cadastro</h4>
+										<p>Preencha os Campos Corretamente</p>
+									</div>
+
+									<div class="container" style="width: 100%">
+										<div class="row">
+											<div class="col-sm">
+												<table>
+													<tr>
+														<td>
+															<div class="input-field">
+																<p:inputText value="#{clienteController.cliente.nome}"
+																	type="text" id="nome" />
+																<p:outputLabel value="Nome" for="nome" />
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="input-field">
+																<p:inputText value="#{clienteController.usuario.email}"
+																	text="email" id="email" />
+																<p:outputLabel value="Email" for="email" />
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="input-field">
+																<p:inputText value="#{clienteController.cliente.cpf}"
+																	text="text" id="cpf" />
+																<p:outputLabel value="Cpf" for="cpf" />
+															</div>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<div class="col-sm">
+												<table>
+													<tr>
+														<td>
+															<div class="input-field">
+																<p:inputText value="#{clienteController.usuario.senha}"
+																	text="password" id="senha" />
+																<p:outputLabel value="Senha" for="senha" />
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="input-field">
+																<p:inputText value="#{clienteController.repeteSenha}"
+																	text="password" id="csenha" />
+																<p:outputLabel value="Confirmar Senha" for="csenha" />
+															</div>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<center>
+											<p:commandButton value="Cadastrar"
+												action="#{clienteController.cadastraCliente}" update="@form" />
+										</center>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</h:form>
+
+			</div>
+		</div>
+
+		<script>
+			// Or with jQuery
+
+			$(document).ready(function() {
+				$('.modal').modal();
+			});
+		</script>
+
+	</h:body>
+
+</f:view>
+
+</html>
+

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
@@ -25,22 +26,16 @@ public class Cliente implements Serializable{
 	
 	private String nome;
 	
-	private String email;
-	
-	private String senha;
-	
-	private String repeteSenha;
-	
 	private Long cpf;
 	
 	private Long rg;
+	
+	@OneToOne(mappedBy = "cliente", orphanRemoval = true)
+	private Usuario usuario;
 
 	public Cliente(String nome, String email, String senha, String repeteSenha, Long cpf, Long rg) {
 		super();
 		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
-		this.repeteSenha = repeteSenha;
 		this.cpf = cpf;
 		this.rg = rg;
 	}
@@ -63,30 +58,6 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getRepeteSenha() {
-		return repeteSenha;
-	}
-
-	public void setRepeteSenha(String repeteSenha) {
-		this.repeteSenha = repeteSenha;
-	}
-
 	public Long getCpf() {
 		return cpf;
 	}
@@ -107,17 +78,23 @@ public class Cliente implements Serializable{
 		return serialVersionUID;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((repeteSenha == null) ? 0 : repeteSenha.hashCode());
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -135,11 +112,6 @@ public class Cliente implements Serializable{
 				return false;
 		} else if (!cpf.equals(other.cpf))
 			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -150,31 +122,22 @@ public class Cliente implements Serializable{
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (repeteSenha == null) {
-			if (other.repeteSenha != null)
-				return false;
-		} else if (!repeteSenha.equals(other.repeteSenha))
-			return false;
 		if (rg == null) {
 			if (other.rg != null)
 				return false;
 		} else if (!rg.equals(other.rg))
 			return false;
-		if (senha == null) {
-			if (other.senha != null)
+		if (usuario == null) {
+			if (other.usuario != null)
 				return false;
-		} else if (!senha.equals(other.senha))
+		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", repeteSenha="
-				+ repeteSenha + ", cpf=" + cpf + ", rg=" + rg + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", usuario=" + usuario + "]";
 	}
-
-	
-	
 	
 }

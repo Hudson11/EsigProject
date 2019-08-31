@@ -84,7 +84,7 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>7.0</version>
+			<version>6.2</version>
 		</dependency>
 
 		<dependency>
@@ -119,7 +119,11 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+		</dependency>
 
 	</dependencies>
 
