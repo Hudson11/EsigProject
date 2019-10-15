@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hudson.Dao.IClienteDao;
+import com.hudson.Dao.IUsuarioDao;
 import com.hudson.Dao.IitemDao;
+import com.hudson.model.Cliente;
 import com.hudson.model.Item;
+import com.hudson.model.Usuario;
 
 @RestController
 @RequestMapping("/item")
@@ -25,6 +29,12 @@ public class service {
 	
 	@Autowired
 	private IitemDao itemDao;
+	
+	@Autowired
+	private IUsuarioDao usuarioDao;
+	
+	@Autowired
+	private IClienteDao clienteDao;
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
@@ -50,8 +60,13 @@ public class service {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public void createOrUpdate(@RequestBody Item c) {
-		itemDao.save(c);
+	public void createOrUpdate(@RequestBody Usuario c) {
+		try {
+			clienteDao.save(c.getCliente());
+			usuarioDao.save(c);
+		}finally {
+			
+		}
 	}
 	
 	@DeleteMapping(value = "/{id}")

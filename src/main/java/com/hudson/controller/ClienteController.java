@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.hudson.Dao.IUsuarioDaoImpl;
-import com.hudson.Dao.iClienteDaoImpl;
+import com.hudson.daoImpl.IUsuarioDaoImpl;
+import com.hudson.daoImpl.iClienteDaoImpl;
 import com.hudson.model.Cliente;
 import com.hudson.model.Usuario;
 
@@ -45,15 +45,16 @@ public class ClienteController {
 	// Cadastro de Cliente
 	public String cadastraCliente() {
 		
-		usuario.setCliente(cliente);
-		clienteDao.save(cliente);
-		
-		userDao.save(usuario);
-		
-		usuario = new Usuario();
-		cliente = new Cliente();
-		
-		return "/cliente-form?faces-redirect=true";
+//		usuario.setCliente(cliente);
+//		clienteDao.save(cliente);
+//		
+//		userDao.save(usuario);
+//		
+//		usuario = new Usuario();
+//		cliente = new Cliente();
+//		
+//		return "/cliente-form?faces-redirect=true";
+		return null;
 	}
 
 	public Cliente getCliente() {

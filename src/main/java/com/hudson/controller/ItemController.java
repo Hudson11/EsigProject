@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.hudson.Dao.IitemDao;
-import com.hudson.Dao.IitemDaoImpl;
+import com.hudson.daoImpl.IitemDaoImpl;
 import com.hudson.model.Item;
 
 @Scope(value = "session")

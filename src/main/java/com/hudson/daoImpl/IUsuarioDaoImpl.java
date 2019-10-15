@@ -1,4 +1,4 @@
-package com.hudson.Dao;
+package com.hudson.daoImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hudson.Dao.IUsuarioDao;
 import com.hudson.model.Usuario;
 import com.hudson.repository.IUsuarioRepository;
 

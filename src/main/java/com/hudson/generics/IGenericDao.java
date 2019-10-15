@@ -1,4 +1,4 @@
-package com.hudson.Dao;
+package com.hudson.generics;
 
 import java.io.Serializable;
 import java.util.List;

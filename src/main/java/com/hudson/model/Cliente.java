@@ -2,17 +2,16 @@ package com.hudson.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "cliente", schema = "pessoal")
 public class Cliente implements Serializable{
 
 	/**
@@ -22,16 +21,17 @@ public class Cliente implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cliente")
 	private Long id;
 	
+	@Column(name = "nome")
 	private String nome;
 	
+	@Column(unique = true, length = 11, nullable = true, name = "cpf")
 	private Long cpf;
 	
+	@Column(name = "rg", unique = true, nullable = true)
 	private Long rg;
-	
-	@OneToOne(mappedBy = "cliente", orphanRemoval = true)
-	private Usuario usuario;
 
 	public Cliente(String nome, String email, String senha, String repeteSenha, Long cpf, Long rg) {
 		super();
@@ -78,13 +78,6 @@ public class Cliente implements Serializable{
 		return serialVersionUID;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	@Override
 	public int hashCode() {
@@ -94,7 +87,6 @@ public class Cliente implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -127,17 +119,12 @@ public class Cliente implements Serializable{
 				return false;
 		} else if (!rg.equals(other.rg))
 			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", usuario=" + usuario + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + "]";
 	}
 	
 }
